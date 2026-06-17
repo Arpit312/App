@@ -22,6 +22,7 @@ export default function TabsLayout() {
           fontWeight: 'bold',
           color: '#111827',
         },
+        headerTitleAlign: 'center',
         headerShadowVisible: false,
       }}
     >
@@ -30,10 +31,45 @@ export default function TabsLayout() {
         options={{
           title: 'Shop',
           tabBarLabel: 'Shop',
-          // Quick fallback rendering for custom tab icons since we avoid installing extra vector icon library bloat
           tabBarIcon: ({ color }) => (
             <View className="items-center justify-center">
               <Text style={{ color, fontSize: 18, fontWeight: 'bold' }}>🛍️</Text>
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="wishlist"
+        options={{
+          title: 'Wishlist',
+          tabBarLabel: 'Wishlist',
+          tabBarIcon: ({ color }) => (
+            <View className="items-center justify-center">
+              <Text style={{ color, fontSize: 18, fontWeight: 'bold' }}>🧡</Text>
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="cart"
+        options={{
+          title: 'Cart',
+          tabBarLabel: 'Cart',
+          tabBarIcon: ({ color }) => (
+            <View className="items-center justify-center">
+              <Text style={{ color, fontSize: 18, fontWeight: 'bold' }}>🛒</Text>
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color }) => (
+            <View className="items-center justify-center">
+              <Text style={{ color, fontSize: 18, fontWeight: 'bold' }}>👤</Text>
             </View>
           ),
         }}

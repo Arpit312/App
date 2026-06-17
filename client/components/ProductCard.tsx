@@ -3,6 +3,8 @@ import { View, Text, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { Link, useRouter } from 'expo-router';
 import { Product } from '../hooks/useProducts';
 
+import { useAuth } from '../context/AuthContext';
+
 interface ProductCardProps {
   product: Product;
 }
@@ -13,6 +15,7 @@ const cardWidth = (width - 40) / 2;
 
 export default function ProductCard({ product }: ProductCardProps) {
   const router = useRouter();
+  const { formatPrice } = useAuth();
 
   // Fallback image if first item is missing
   const imageUrl = product.image_urls?.[0] || 'https://images.unsplash.com/photo-1542291026-7eec264c27ff';
@@ -52,7 +55,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Product Price & Cart trigger row */}
       <View className="flex-row items-center justify-between mt-auto">
         <Text className="text-base font-bold text-primary">
-          ${product.price.toFixed(2)}
+          {formatPrice(product.price)}
         </Text>
         <View className="bg-primary/10 p-1.5 rounded-lg">
           <Text className="text-xs text-primary font-bold">＋ Add</Text>

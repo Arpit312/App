@@ -26,6 +26,19 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
 
+// Custom Detailed Request Logger Middleware
+app.use((req, res, next) => {
+  console.log(`\n=== [REQUEST] ${req.method} ${req.originalUrl} ===`);
+  if (Object.keys(req.query).length > 0) {
+    console.log('Query Params:', JSON.stringify(req.query, null, 2));
+  }
+  if (req.body && Object.keys(req.body).length > 0) {
+    console.log('Request Body:', JSON.stringify(req.body, null, 2));
+  }
+  console.log('====================================\n');
+  next();
+});
+
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
@@ -40,7 +53,7 @@ app.get('/health', (req, res) => {
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5002;
 
 app.listen(PORT, () => {
   console.log(`Server listening in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);

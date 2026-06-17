@@ -36,9 +36,6 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Create compound or simple index for performance querying
-userSchema.index({ email: 1 });
-
 const User = mongoose.model('User', userSchema);
 
 export default User;

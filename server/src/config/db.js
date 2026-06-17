@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import seedDatabase from './seed.js';
 
 /**
  * Establishes a connection to MongoDB using Mongoose.
@@ -9,8 +10,9 @@ const connectDB = async () => {
 
   try {
     // Configure event listeners before connecting
-    mongoose.connection.on('connected', () => {
+    mongoose.connection.on('connected', async () => {
       console.log('MongoDB connection successfully established.');
+      await seedDatabase(); // Run data seed
     });
 
     mongoose.connection.on('error', (err) => {
