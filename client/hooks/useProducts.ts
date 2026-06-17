@@ -6,6 +6,8 @@ export interface Product {
   name: string;
   brand: string;
   category: 'Clothing' | 'Shoes' | 'Accessories';
+  sub_category?: string;
+  gender?: 'Men' | 'Women' | 'Kids' | 'Unisex';
   price: number;
   stock_quantity: number;
   description: string;

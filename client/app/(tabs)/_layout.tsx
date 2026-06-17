@@ -1,7 +1,10 @@
 import { Tabs } from 'expo-router';
 import { View, Text } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function TabsLayout() {
+  const insets = useSafeAreaInsets();
+
   return (
     <Tabs
       screenOptions={{
@@ -11,8 +14,8 @@ export default function TabsLayout() {
           backgroundColor: '#ffffff',
           borderTopWidth: 1,
           borderTopColor: '#f3f4f6',
-          height: 60,
-          paddingBottom: 8,
+          height: 60 + insets.bottom,
+          paddingBottom: insets.bottom > 0 ? insets.bottom : 8,
           paddingTop: 8,
         },
         headerStyle: {
@@ -30,6 +33,7 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: 'Shop',
+          headerShown: false,
           tabBarLabel: 'Shop',
           tabBarIcon: ({ color }) => (
             <View className="items-center justify-center">
